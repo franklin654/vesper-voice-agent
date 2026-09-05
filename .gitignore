@@ -1,6 +1,12 @@
 # IDE Files
 .vscode/
 
+# Local Reference Files
+tests/
+
 # Secrets
 .env
+
+# Local Cache Files
+**/__pycache__
 
