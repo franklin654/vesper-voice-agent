@@ -1,0 +1,34 @@
+{
+    "filesystem": {
+        "command": "npx",
+        "args": [
+            "-y",
+            "@modelcontextprotocol/server-filesystem",
+            "${HOME}"
+        ],
+        "transport": "stdio"
+    },
+    "ddg-search": {
+        "command": "uvx",
+        "args": [
+            "--with",
+            "duckduckgo-mcp-server[browser]",
+            "duckduckgo-mcp-server",
+            "--fetch-backend",
+            "auto"
+        ],
+        "transport": "stdio"
+    },
+    "playwright": {
+        "command": "npx",
+        "args": [
+            "@playwright/mcp@latest",
+            "--extension",
+            "--caps=vision,devtools,pdf,storage"
+        ],
+        "env": {
+            "PLAYWRIGHT_MCP_EXTENSION_TOKEN": "${PLAYWRIGHT_MCP_EXTENSION_TOKEN}"
+        },
+        "transport": "stdio"
+    }
+}

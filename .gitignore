@@ -9,4 +9,9 @@ tests/
 
 # Local Cache Files
 **/__pycache__
+.playwright-mcp/
+openwake_models/
+
+# Claude Code local/session files
+.claude/
 
