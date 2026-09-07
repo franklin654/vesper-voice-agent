@@ -1,9 +1,5 @@
-from typing import Dict
-
-import openwakeword
 from openwakeword.model import Model
-from ear import Ear
-import soxr
+from .ear import Ear
 
 WAKE_WORD_THRESHOLD = 0.4
 

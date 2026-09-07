@@ -1,8 +1,6 @@
-import numpy as np
-import soxr
 from sarvamai import AsyncSarvamAI, RealtimeAudioInput, RealtimePing
 import asyncio
-from ear import Ear
+from .ear import Ear
 import base64
 
 MAX_UTTERANCE_SECONDS = 90

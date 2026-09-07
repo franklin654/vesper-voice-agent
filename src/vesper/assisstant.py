@@ -2,11 +2,11 @@ from langchain.messages import HumanMessage, SystemMessage, AIMessage
 from langchain_core.runnables import RunnableConfig
 from langgraph.types import Command
 
-from agent_factory import get_agent
-from ear import Ear
-from transcribe import Transcriber
-from wake_word import WakeWordGate
-from tools import load_all_tools
+from .agent_factory import get_agent
+from .ear import Ear
+from .transcribe import Transcriber
+from .wake_word import WakeWordGate
+from .tools import load_all_tools
 
 from contextlib import AsyncExitStack
 import os
@@ -47,7 +47,7 @@ async def run_assistant():
                             "content": text
                         }
                     ]
-                }, 
+                },
                 config=config,
                 version="v2")
                 while result.interrupts:

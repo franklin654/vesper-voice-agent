@@ -4,7 +4,8 @@
         "args": [
             "-y",
             "@modelcontextprotocol/server-filesystem",
-            "${HOME}"
+            "${HOME}",
+            "/run/media/saisivakesh/WD Discover"
         ],
         "transport": "stdio"
     },
