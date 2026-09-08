@@ -4,9 +4,9 @@ from langchain_core.tools import BaseTool
 from langchain_mcp_adapters.tools import load_mcp_tools
 
 from .mcp_servers import get_mcp_client
-from .custom_tools import ask_user
+from .custom_tools import ask_user, execute_shell_command
 
-CUSTOM_TOOLS = [ask_user]
+CUSTOM_TOOLS = [ask_user, execute_shell_command]
 
 
 async def load_all_tools(stack: AsyncExitStack) -> list[BaseTool]:

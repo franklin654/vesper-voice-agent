@@ -1,5 +1,6 @@
 from langchain.messages import HumanMessage, SystemMessage, AIMessage
 from langchain_core.runnables import RunnableConfig
+from langgraph.pregel import Pregel
 from langgraph.types import Command
 
 from .agent_factory import get_agent
@@ -17,6 +18,26 @@ dotenv.load_dotenv()
 REPLY_TIMEOUT_SECONDS = 15.0
 
 config: RunnableConfig = {"configurable": {"thread_id": "1"}}
+
+async def run_and_stream(agent: Pregel, input_data, config: RunnableConfig):
+    """
+    Helper function to stream updates to the console 
+    and return the final state snapshot.
+    """
+    async with await agent.astream_events(
+        input_data,
+        config=config,
+        version="v3"
+    ) as run:
+        async def consume_messages():
+            async for message in run.messages:
+                async for token in message.text:
+                    print(token, end="", flush=True)
+                    await asyncio.sleep(0.010)
+            print()
+        
+        await asyncio.gather(consume_messages())
+    return await agent.aget_state(config)
 
 async def run_assistant():
     sarvam_api_key = os.environ.get("SARVAM_API_KEY")
@@ -40,16 +61,10 @@ async def run_assistant():
                 HumanMessage(text).pretty_print()
                 if text is None:
                     continue
-                result = await agent.ainvoke({
-                    "messages": [
-                        {
-                            "role": "user",
-                            "content": text
-                        }
-                    ]
-                },
-                config=config,
-                version="v2")
+
+                initial_input = {"messages": [{"role": "user", "content": text}]}
+                result = await run_and_stream(agent, initial_input, config)
+
                 while result.interrupts:
                     question = result.interrupts[0].value["action_requests"][0]["args"]["question"]
                     ear.drain()
@@ -65,16 +80,8 @@ async def run_assistant():
                         }
                     else:
                         decision = {"type": "respond", "message": reply}
-                    result = await agent.ainvoke(
-                        Command(
-                            resume={
-                                "decisions": [decision]
-                            }
-                        ),
-                        config=config,
-                        version="v2"
-                    )
-                result.value["messages"][-1].pretty_print()
+                    resume_input = Command(resume={"decisions": [decision]})
+                    result = await run_and_stream(agent, resume_input, config)
                 ear.drain()
         finally:
             ear.close()

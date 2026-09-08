@@ -23,28 +23,26 @@ async def run_and_stream(agent: Pregel, input_data, config: RunnableConfig):
     Helper function to stream updates to the console 
     and return the final state snapshot.
     """
-    async for chunk in agent.astream(
+    async with await agent.astream_events(
         input_data,
         config=config,
-        stream_mode="values",
-        version="v2"
-    ):
-        if chunk["type"] == "values":
-            print("\n🔄 [Live State Value]:")
-            # chunk["data"] contains the full state dictionary at this step
-            state = chunk["data"]
-            messages = state.get("messages", [])
-
-            if messages:
-                messages[-1].pretty_print()
-
+        version="v3"
+    ) as run:
+        async def consume_messages():
+            async for message in run.messages:
+                async for token in message.text:
+                    print(token, end="", flush=True)
+                    await asyncio.sleep(0.010)
+            print()
+        
+        await asyncio.gather(consume_messages())
     return await agent.aget_state(config)
 
 
 async def main() -> None:
     async with AsyncExitStack() as stack:
         tools = await load_all_tools(stack)
-        agent = get_agent(model_name="GLM-4.5-Flash", tools=tools)
+        agent = get_agent(model_name="GLM-5.3-Flash", tools=tools)
 
         SystemMessage("Text-mode agent ready. Type 'quit' to exit.").pretty_print()
         while True:
