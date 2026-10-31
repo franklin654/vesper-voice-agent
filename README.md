@@ -71,6 +71,8 @@ cp .env.example .env
 | `ZAI_API_KEY` | Yes | API key for the LLM backend (z.ai by default) |
 | `PLAYWRIGHT_MCP_EXTENSION_TOKEN` | Only if using the Playwright MCP server's browser extension mode | Token for the Playwright browser extension |
 | `MIC_DEVICE_NAME` | No | Substring of your microphone's device name, so Vesper picks the right input device automatically. If unset, you'll be prompted to choose one interactively at startup. |
+| `WAKE_WORD_MODEL_PATH` | No | Custom ONNX model. Defaults to `openwake_models/hey_vesper.onnx`; relative paths resolve against the `vesper` package directory, independently of the working directory. Absolute paths and `~` are also supported. |
+| `WAKE_WORD_PHRASE` | No | Wake phrase shown in the console. Defaults to the model filename converted to words, e.g. `Hey Vesper`. This does not change the phrase the model was trained to detect. |
 
 The MCP servers are launched on demand via `npx`/`uvx` the first time they're
 used, so the first run of each will need network access to fetch them.
