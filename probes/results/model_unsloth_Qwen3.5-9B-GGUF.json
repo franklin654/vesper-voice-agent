@@ -1,0 +1,49 @@
+{
+  "model": "unsloth/Qwen3.5-9B-GGUF",
+  "temperature": 0.2,
+  "summary": {
+    "missing": {
+      "n": 9,
+      "pass_rate": 1.0
+    },
+    "multi": {
+      "n": 6,
+      "pass_rate": 0.5
+    },
+    "none": {
+      "n": 9,
+      "pass_rate": 1.0
+    },
+    "single": {
+      "n": 9,
+      "pass_rate": 1.0
+    }
+  },
+  "latency_ms": {
+    "p50": 1326,
+    "p95": 4059
+  },
+  "failures": [
+    {
+      "id": "multi-01",
+      "group": "multi",
+      "run": 0,
+      "verdict": "wrong_tool",
+      "ms": 1551
+    },
+    {
+      "id": "multi-01",
+      "group": "multi",
+      "run": 1,
+      "verdict": "wrong_tool",
+      "ms": 1421
+    },
+    {
+      "id": "multi-01",
+      "group": "multi",
+      "run": 2,
+      "verdict": "wrong_tool",
+      "ms": 1387
+    }
+  ]
+}

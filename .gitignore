@@ -1,0 +1,15 @@
+# IDE Files
+.vscode
+
+# Environment Files
+
+.venv/
+__pycache__/
+.env
+fixtures/audio/
+fixtures/wake/
+models/
+*.gguf
+*.onnx
+others/
+.pytest_cache/

@@ -1,0 +1,60 @@
+# fixtures/phrases.yaml
+- {id: open-app-01, category: apps, lang: en, text: "open Firefox"}
+- {id: open-app-02, category: apps, lang: en, text: "open the file manager"}
+- {id: open-app-03, category: apps, lang: en, text: "open the terminal"}
+- {id: open-app-04, category: apps, lang: en, text: "switch to Kate"}
+- {id: open-app-05, category: apps, lang: en, text: "close this window"}
+- {id: open-app-06, category: apps, lang: en, text: "open settings"}
+- {id: media-01, category: media, lang: en, text: "pause"}
+- {id: media-02, category: media, lang: en, text: "play"}
+- {id: media-03, category: media, lang: en, text: "next song"}
+- {id: media-04, category: media, lang: en, text: "volume up"}
+- {id: media-05, category: media, lang: en, text: "mute"}
+- {id: media-06, category: media, lang: en, text: "play my workout playlist"}
+- {id: web-01, category: web, lang: en, text: "open github dot com"}
+- {id: web-02, category: web, lang: en, text: "search the web for Python asyncio timeouts"}
+- {id: web-03, category: web, lang: en, text: "open YouTube"}
+- {id: web-04, category: web, lang: en, text: "open a new tab"}
+- {id: web-05, category: web, lang: en, text: "go back"}
+- {id: web-06, category: web, lang: en, text: "bookmark this page"}
+- {id: sys-01, category: system, lang: en, text: "lock the screen"}
+- {id: sys-02, category: system, lang: en, text: "take a screenshot"}
+- {id: sys-03, category: system, lang: en, text: "turn Wi-Fi off"}
+- {id: sys-04, category: system, lang: en, text: "turn Bluetooth on"}
+- {id: sys-05, category: system, lang: en, text: "brightness down"}
+- {id: sys-06, category: system, lang: en, text: "what time is it"}
+- {id: sys-07, category: system, lang: en, text: "what's the battery level"}
+- {id: sys-08, category: system, lang: en, text: "move this window to the left half"}
+- {id: file-01, category: files, lang: en, text: "find the budget spreadsheet"}
+- {id: file-02, category: files, lang: en, text: "copy number two to Documents Reports"}
+- {id: file-03, category: files, lang: en, text: "move that to Downloads"}
+- {id: file-04, category: files, lang: en, text: "rename it to final report"}
+- {id: file-05, category: files, lang: en, text: "undo that"}
+- {id: file-06, category: files, lang: en, text: "open the second one"}
+- {id: file-07, category: files, lang: en, text: "find my resume"}
+- {id: file-08, category: files, lang: en, text: "show recent files"}
+- {id: file-09, category: files, lang: en, text: "put this in the trash"}
+- {id: file-10, category: safety, lang: en, text: "delete everything in my home folder"}
+- {id: rem-01, category: reminders, lang: en, text: "remind me in ten minutes to stretch"}
+- {id: rem-02, category: reminders, lang: en, text: "remind me tomorrow morning to call Ravi"}
+- {id: rem-03, category: reminders, lang: en, text: "set a timer for five minutes"}
+- {id: rem-04, category: reminders, lang: en, text: "remind me on Friday at 3 pm about the review"}
+- {id: rem-05, category: reminders, lang: en, text: "set a reminder"}
+- {id: rem-06, category: reminders, lang: en, text: "what are my reminders"}
+- {id: rem-07, category: reminders, lang: en, text: "cancel the last reminder"}
+- {id: rem-08, category: reminders, lang: en, text: "snooze for ten minutes"}
+- {id: agent-01, category: agent, lang: en, text: "what is the capital of Australia"}
+- {id: agent-02, category: agent, lang: en, text: "summarise this page"}
+- {id: agent-03, category: agent, lang: en, text: "what's on my calendar tomorrow"}
+- {id: agent-04, category: agent, lang: en, text: "draft a reply to the vendor saying we will confirm on Friday"}
+- {id: agent-05, category: agent, lang: en, text: "send this to Priya at nine tomorrow"}
+- {id: agent-06, category: agent, lang: en, text: "explain what a circuit breaker is in software"}
+- {id: agent-07, category: agent, lang: en, text: "what is seventeen times twenty three"}
+- {id: tel-01, category: mixed, lang: te-en, text: "ee file ni Documents loki copy cheyyi", expected_en: "copy this file to Documents"}
+- {id: tel-02, category: mixed, lang: te-en, text: "naaku repu udayam enimidi ki remind cheyyi", expected_en: "remind me tomorrow morning at eight"}
+- {id: tel-03, category: mixed, lang: te-en, text: "Firefox open cheyyi", expected_en: "open Firefox"}
+- {id: tel-04, category: mixed, lang: te-en, text: "volume konchem penchu", expected_en: "increase the volume a little"}
+- {id: tel-05, category: mixed, lang: te-en, text: "Ravi garu ki oka mail draft cheyyi", expected_en: "draft a mail to Ravi"}
+- {id: tel-06, category: mixed, lang: te-en, text: "ippudu time entha", expected_en: "what time is it now"}
+- {id: tel-07, category: mixed, lang: te-en, text: "ee window ni left side ki pettu", expected_en: "put this window on the left side"}
+- {id: tel-08, category: mixed, lang: te-en, text: "music pause cheyyi", expected_en: "pause the music"}

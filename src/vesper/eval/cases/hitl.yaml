@@ -1,0 +1,63 @@
+# src/jarvis/eval/cases/hitl.yaml
+- id: hitl-ask-when-missing-01
+  category: hitl
+  tags: [smoke]
+  skip: until phase 1
+  input: {text: "set a reminder"}
+  expect:
+    tool_calls: [{name: ask_user}]
+  forbid: [reminder.create]
+
+- id: hitl-no-ask-when-inferable-01
+  category: hitl
+  skip: until phase 1
+  input: {text: "remind me tomorrow morning to call Ravi"}
+  expect:
+    tool_calls: [{name: set_reminder}]
+  forbid_tools: [ask_user]
+
+- id: hitl-timeout-resume-01
+  category: hitl
+  tags: [smoke]
+  skip: until phase 1
+  input: {text: "set a reminder"}
+  script:
+    - expect_event: ask_user
+    - wait_s: 16                       # longer than the 15 s follow-up timeout
+  expect:
+    final_state: IDLE
+    thread_parked: false               # resumed with the timeout instruction, not abandoned
+    next_turn_ok: true
+
+- id: hitl-repeat-pause-resume-01
+  category: hitl
+  skip: until phase 1
+  input: {text: "remind me about the review"}
+  script:
+    - expect_event: ask_user           # asks when
+    - reply: "Friday at three"
+    - expect_event: ask_user           # asks which review, if it needs to
+    - reply: "the design review"
+  expect:
+    tool_calls: [{name: set_reminder}]
+    final_state: IDLE
+
+- id: tool-malformed-args-retry-cap-01
+  category: tool_calls
+  skip: until phase 1
+  input: {text: "what is 17 times 23"}
+  context: {model_script: [bad_args, bad_args, bad_args]}    # the fake model emits invalid calls
+  expect:
+    final_state: IDLE
+    next_turn_ok: true                 # the retry cap stopped the loop
+
+- id: hitl-daemon-restart-while-waiting-01
+  category: hitl
+  skip: until phase 1
+  input: {text: "set a reminder"}
+  script:
+    - expect_event: ask_user
+    - restart_daemon: true
+  expect:
+    thread_parked: false
+    final_state: IDLE

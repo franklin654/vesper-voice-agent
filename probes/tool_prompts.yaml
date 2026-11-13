@@ -1,0 +1,12 @@
+# probes/tool_prompts.yaml
+- {id: single-01, group: single, text: "What is 17 times 23?", expect: {tool: calc}}
+- {id: single-02, group: single, text: "Remind me to call Ravi tomorrow at 5 pm", expect: {tool: set_reminder}}
+- {id: single-03, group: single, text: "Find my resume", expect: {tool: search_files}}
+- {id: multi-01, group: multi, text: "Find the budget spreadsheet and remind me to review it tomorrow at 9 am", expect: {tools: [search_files, set_reminder]}}
+- {id: multi-02, group: multi, text: "What is 12 times 12, and remind me at noon to eat", expect: {tools: [calc, set_reminder]}}
+- {id: missing-01, group: missing, text: "Set a reminder", expect: {asks: true}}
+- {id: missing-02, group: missing, text: "Remind me to call Priya", expect: {asks: true}}
+- {id: missing-03, group: missing, text: "Remind me at 6 pm", expect: {asks: true}}
+- {id: none-01, group: none, text: "What is the capital of Australia?", expect: {no_tool: true}}
+- {id: none-02, group: none, text: "Explain what a circuit breaker is in software", expect: {no_tool: true}}
+- {id: none-03, group: none, text: "Thanks, that's all", expect: {no_tool: true}}
